@@ -1801,8 +1801,12 @@ progress::-webkit-progress-value {
 
   /* Hero adjustments */
   .hero {
-    padding: 16px;
-    gap: 12px;
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .hero__content {
+    max-width: 100%;
   }
 
   .hero__status {
@@ -1810,7 +1814,19 @@ progress::-webkit-progress-value {
   }
 
   h1 {
-    font-size: clamp(22px, 5vw, 36px);
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .hero__content > p:last-child {
+    font-size: 13px;
+    margin-top: 6px;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    margin-bottom: 4px;
   }
 
   /* Range switch / filters */
@@ -1824,9 +1840,17 @@ progress::-webkit-progress-value {
     gap: 10px;
   }
 
-  /* All children respect parent width */
-  .workspace * {
+  /* Targeted width containment — NOT a wildcard */
+  .workspace > .hero,
+  .workspace > .navigation-bar,
+  .workspace > .command-bar,
+  .workspace > .usage-guide-banner,
+  .workspace > .mobile-current-tab,
+  .workspace > .toolbar-controls,
+  .workspace > .dashboard-grid,
+  .workspace > .metric-row {
     max-width: 100%;
+    overflow-x: hidden;
   }
 
   /* Panel headings wrap on mobile */
@@ -1882,28 +1906,35 @@ progress::-webkit-progress-value {
   .chart-panel,
   .outlet-panel {
     min-width: 0 !important;
-    overflow: hidden;
   }
 
-  /* Combo chart */
+  /* Combo chart — keep grid layout, allow horizontal scroll */
   .combo-chart {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    display: flex !important;
-    gap: 8px;
-    align-items: end;
+    min-height: 180px;
     padding-bottom: 8px;
   }
-  .combo-chart .chart-bar {
-    flex: 1 0 32px;
-    min-width: 32px;
+
+  /* Donut chart — constrain but don't break */
+  .donut-chart {
+    width: min(200px, 90%);
   }
 
-  /* Global min-width reset for all grid/flex children */
+  /* Charts inside panels need to be visible */
+  .chart-panel,
+  .mix-panel {
+    overflow: visible;
+  }
+  .chart-panel .panel,
+  .mix-panel .panel {
+    overflow: visible;
+  }
+
+  /* Global min-width reset for grid children (NOT overflow:hidden) */
   .dashboard-grid > *,
   .metric-row > * {
     min-width: 0;
-    overflow: hidden;
   }
 
   /* Hero status */
@@ -1964,7 +1995,7 @@ progress::-webkit-progress-value {
   }
 
   h1 {
-    font-size: 22px;
+    font-size: 18px;
   }
 
   .hero__content > p:last-child {
