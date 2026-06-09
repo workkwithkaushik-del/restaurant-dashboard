@@ -124,6 +124,132 @@ function UsageGuideBanner({ selectedDate, selectedOutlet, getTodayString }) {
   );
 }
 
+function DashboardEmptyState({ selectedDate, selectedOutlet, getTodayString, roleLabel }) {
+  const isToday = selectedDate === getTodayString();
+  const isSpecificOutlet = selectedOutlet !== 'all';
+  
+  return (
+    <div 
+      className="panel"
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '60px 20px',
+        textAlign: 'center',
+        background: 'var(--hero-status-bg)',
+        border: '1px solid var(--border-subtle)',
+        borderRadius: 12,
+        boxShadow: 'var(--shadow-panel)',
+        minHeight: 400,
+        position: 'relative',
+        overflow: 'hidden',
+        width: '100%'
+      }}
+    >
+      <span aria-hidden="true" style={{ content: "''", position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(8,120,93,0.05), transparent 60%)", pointerEvents: "none" }} />
+      
+      {/* Decorative Icon */}
+      <div 
+        style={{
+          width: 80,
+          height: 80,
+          borderRadius: '50%',
+          background: 'var(--wash)',
+          border: '1px solid var(--border-subtle)',
+          display: 'grid',
+          placeItems: 'center',
+          marginBottom: 24,
+          color: 'var(--green)',
+          boxShadow: 'var(--shadow-card)'
+        }}
+      >
+        <Store size={40} />
+      </div>
+
+      <p style={{ margin: '0 0 8px', color: 'var(--text-success)', fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase' }}>
+        Setup Required
+      </p>
+      <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 28, margin: '0 0 12px', color: 'var(--text-primary)', fontWeight: 600 }}>
+        Configure Dashboard Scope
+      </h2>
+      <p style={{ color: 'var(--text-muted)', maxWidth: 460, fontSize: 14, lineHeight: 1.5, margin: '0 0 32px' }}>
+        To view live telemetry, revenue tracking, and workforce audits for the {roleLabel} Dashboard, please configure the filters in the control panel above.
+      </p>
+
+      {/* Guide Steps Card */}
+      <div 
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 16,
+          width: '100%',
+          maxWidth: 420,
+          background: 'var(--surface-card)',
+          border: '1px solid var(--border-subtle)',
+          borderRadius: 8,
+          padding: 20,
+          textAlign: 'left',
+          boxShadow: 'var(--shadow-card)'
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div 
+            style={{
+              width: 24,
+              height: 24,
+              borderRadius: '50%',
+              background: isToday ? 'var(--green-soft)' : 'var(--wash)',
+              border: '1px solid var(--border-subtle)',
+              display: 'grid',
+              placeItems: 'center',
+              fontSize: 12,
+              fontWeight: 800,
+              color: isToday ? 'var(--text-success)' : 'var(--text-muted)'
+            }}
+          >
+            {isToday ? "✓" : "1"}
+          </div>
+          <div style={{ flex: 1 }}>
+            <strong style={{ display: 'block', fontSize: 13, color: 'var(--text-primary)' }}>Set Date to Today</strong>
+            <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>
+              {isToday ? `Date is set to today (${selectedDate})` : "Change date filter above to today's date"}
+            </span>
+          </div>
+        </div>
+
+        <div style={{ height: 1, background: 'var(--border-subtle)' }} />
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div 
+            style={{
+              width: 24,
+              height: 24,
+              borderRadius: '50%',
+              background: isSpecificOutlet ? 'var(--green-soft)' : 'var(--wash)',
+              border: '1px solid var(--border-subtle)',
+              display: 'grid',
+              placeItems: 'center',
+              fontSize: 12,
+              fontWeight: 800,
+              color: isSpecificOutlet ? 'var(--text-success)' : 'var(--text-muted)'
+            }}
+          >
+            {isSpecificOutlet ? "✓" : "2"}
+          </div>
+          <div style={{ flex: 1 }}>
+            <strong style={{ display: 'block', fontSize: 13, color: 'var(--text-primary)' }}>Select a Specific Outlet</strong>
+            <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>
+              {isSpecificOutlet ? "Specific outlet selected" : "Switch 'All Outlets' filter above to a specific branch"}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Dashboard() {
   const { role, activeView } = useParams();
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
@@ -203,6 +329,10 @@ function Dashboard() {
   });
   const [showExportModal, setShowExportModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const isToday = selectedDate === getTodayString();
+  const isSpecificOutlet = selectedOutlet !== "all";
+  const isConfigured = isToday && isSpecificOutlet;
 
   // Persist state changes to localStorage
   // role is synced in setRole manually to avoid unnecessary re-renders
@@ -530,7 +660,9 @@ function Dashboard() {
         </Hero>
 
         {/* Usage Guide Banner */}
-        <UsageGuideBanner selectedDate={selectedDate} selectedOutlet={selectedOutlet} getTodayString={getTodayString} />
+        {isConfigured && (
+          <UsageGuideBanner selectedDate={selectedDate} selectedOutlet={selectedOutlet} getTodayString={getTodayString} />
+        )}
 
         <section
           className="navigation-bar"
@@ -609,49 +741,60 @@ function Dashboard() {
           </div>
         </section>
 
-        <section
-          className="command-bar"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 10,
-            padding: 10,
-            border: "1px solid var(--border-subtle)",
-            borderRadius: 8,
-            background: "var(--hero-status-bg)",
-          }}
-          aria-label="Search and report actions"
-        >
-          <CommandInput
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Try: low stock at Lake Road, delayed orders, chef score"
-          />
-          <DSButton variant="secondary" onClick={() => setShowExportModal(true)}>
-            Export report
-          </DSButton>
-        </section>
+        {isConfigured ? (
+          <>
+            <section
+              className="command-bar"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+                padding: 10,
+                border: "1px solid var(--border-subtle)",
+                borderRadius: 8,
+                background: "var(--hero-status-bg)",
+              }}
+              aria-label="Search and report actions"
+            >
+              <CommandInput
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Try: low stock at Lake Road, delayed orders, chef score"
+              />
+              <DSButton variant="secondary" onClick={() => setShowExportModal(true)}>
+                Export report
+              </DSButton>
+            </section>
 
-        {activeView === "overview" && (
-          <Overview
-            role={role}
-            totals={totals}
-            average={average}
-            filteredOutlets={filteredOutlets}
-            criticalAlerts={criticalAlerts}
-            setDismissedAlerts={setDismissedAlerts}
-            setActiveView={setActiveView}
-            scopedOrders={scopedOrders}
-            isHistorical={isHistorical}
-            dateMultiplier={dateMultiplier}
+            {activeView === "overview" && (
+              <Overview
+                role={role}
+                totals={totals}
+                average={average}
+                filteredOutlets={filteredOutlets}
+                criticalAlerts={criticalAlerts}
+                setDismissedAlerts={setDismissedAlerts}
+                setActiveView={setActiveView}
+                scopedOrders={scopedOrders}
+                isHistorical={isHistorical}
+                dateMultiplier={dateMultiplier}
+                selectedDate={selectedDate}
+              />
+            )}
+            {activeView === "orders" && <Orders orders={scopedOrders} role={role} updateOrderStatus={updateOrderStatus} />}
+            {activeView === "inventory" && <Inventory items={scopedInventory} role={role} />}
+            {activeView === "staff" && <Staff role={role} selectedOutlet={selectedOutlet} searchQuery={searchQuery} outlets={outlets} chefs={chefs} />}
+            {activeView === "menu" && <MenuPanel role={role} searchQuery={searchQuery} />}
+            {activeView === "feedback" && <Feedback selectedOutlet={selectedOutlet} searchQuery={searchQuery} />}
+          </>
+        ) : (
+          <DashboardEmptyState
             selectedDate={selectedDate}
+            selectedOutlet={selectedOutlet}
+            getTodayString={getTodayString}
+            roleLabel={roleLabel}
           />
         )}
-        {activeView === "orders" && <Orders orders={scopedOrders} role={role} updateOrderStatus={updateOrderStatus} />}
-        {activeView === "inventory" && <Inventory items={scopedInventory} role={role} />}
-        {activeView === "staff" && <Staff role={role} selectedOutlet={selectedOutlet} searchQuery={searchQuery} outlets={outlets} chefs={chefs} />}
-        {activeView === "menu" && <MenuPanel role={role} searchQuery={searchQuery} />}
-        {activeView === "feedback" && <Feedback selectedOutlet={selectedOutlet} searchQuery={searchQuery} />}
       </section>
 
       <Modal 
