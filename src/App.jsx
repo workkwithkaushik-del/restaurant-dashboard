@@ -1041,7 +1041,7 @@ function Overview({ role, totals: liveTotals, average: liveAverage, filteredOutl
     const dominantChannel = aggregatorData.reduce((prev, current) => (prev.value > current.value) ? prev : current).name;
 
     return (
-      <div className="graph-summary-panel" aria-label="Graph summary" key="summary" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(200px, 100%), 1fr))', gap: 12, gridColumn: 'span 1' }}>
+      <div className="graph-summary-panel" aria-label="Graph summary" key="summary" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, gridColumn: '1 / -1' }}>
         <article className="summary-card" style={{ border: '1px solid var(--border-subtle)', background: 'var(--surface-card)', boxShadow: 'var(--shadow-card)', display: 'flex', position: 'relative', overflow: 'hidden', padding: 18, borderRadius: 8, gridColumn: 'span 2' }}>
           <span aria-hidden="true" style={{ content: "''", position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(8,120,93,0.10), transparent 54%)", pointerEvents: "none" }} />
           <div style={{ flex: 1, minWidth: 0, position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
@@ -1264,7 +1264,7 @@ function Overview({ role, totals: liveTotals, average: liveAverage, filteredOutl
       title={showChef ? "Station performance" : "Action required"} 
       key="ops"
       action={<StatusPill tone="danger">{criticalAlerts.length} open</StatusPill>}
-      style={{ gridColumn: role === 'regional' ? '1 / -1' : 'span 2', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', gap: 12, height: '100%' }}
+      style={{ gridColumn: (role === 'regional' || role === 'chef') ? '1 / -1' : 'span 2', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', gap: 12, height: '100%' }}
     >
       {renderOpsTelemetryBanner()}
       <div className="action-list" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(260px, 100%), 1fr))', gap: 12 }}>
