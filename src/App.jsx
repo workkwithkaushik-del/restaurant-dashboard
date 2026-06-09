@@ -820,7 +820,7 @@ function Overview({ role, totals: liveTotals, average: liveAverage, filteredOutl
         </div>
       )}
 
-      <div className="commodity-matrix-card" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20 }}>
+      <div className="commodity-matrix-card" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))', gap: 20 }}>
         {/* Left Layout Pane: Sliders Input Array */}
         <div className="commodity-left" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div className="commodity-slider-group" style={{ display: 'grid', gap: 6 }}>
@@ -915,7 +915,7 @@ function Overview({ role, totals: liveTotals, average: liveAverage, filteredOutl
   );
 
   const leakageFeedbackPanel = (
-    <div className="leakage-feedback-panel" key="leakage-feedback" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 20 }}>
+    <div className="leakage-feedback-panel" key="leakage-feedback" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))', gap: 20 }}>
       {/* Left Layout Element: Conversion Funnel */}
       <Panel 
         eyebrow="Leakage Analysis" 
@@ -1026,7 +1026,7 @@ function Overview({ role, totals: liveTotals, average: liveAverage, filteredOutl
     const dominantChannel = aggregatorData.reduce((prev, current) => (prev.value > current.value) ? prev : current).name;
 
     return (
-      <div className="graph-summary-panel" aria-label="Graph summary" key="summary" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, gridColumn: 'span 1' }}>
+      <div className="graph-summary-panel" aria-label="Graph summary" key="summary" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(200px, 100%), 1fr))', gap: 12, gridColumn: 'span 1' }}>
         <article className="summary-card" style={{ border: '1px solid var(--border-subtle)', background: 'var(--surface-card)', boxShadow: 'var(--shadow-card)', display: 'flex', position: 'relative', overflow: 'hidden', padding: 18, borderRadius: 8, gridColumn: 'span 2' }}>
           <span aria-hidden="true" style={{ content: "''", position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(8,120,93,0.10), transparent 54%)", pointerEvents: "none" }} />
           <div style={{ flex: 1, minWidth: 0, position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
@@ -1166,7 +1166,7 @@ function Overview({ role, totals: liveTotals, average: liveAverage, filteredOutl
                 <StatusPill tone={h.cls === "positive" ? "success" : h.cls === "warning" ? "warning" : "danger"}>{h.label}</StatusPill>
                 <span style={{fontSize: 13, color: 'var(--text-muted)'}}>Composite health score across stock, margin, NPS, and growth</span>
               </div>
-              <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12}}>
+              <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(140px, 100%), 1fr))', gap: 12}}>
                 <Metric title="Net Sales" value={formatCurrency(selectedOutletForInspect.sales)} change={`+${selectedOutletForInspect.growth}% growth`} accent="green" />
                 <Metric title="Net Margin" value={`${selectedOutletForInspect.margin}%`} change="After COGS & labour" accent="purple" />
                 <Metric title="Customer NPS" value={`${selectedOutletForInspect.nps}`} change={`${selectedOutletForInspect.rating}★ avg rating`} accent="blue" />

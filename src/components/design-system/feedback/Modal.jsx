@@ -34,27 +34,30 @@ export function Modal({
         backdropFilter: "blur(8px)",
         WebkitBackdropFilter: "blur(8px)",
         fontFamily: "var(--font-sans)",
+        padding: "16px",
       }}
     >
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
-          background: "var(--surface-card)",
-          padding: 32,
+          background: "var(--surface-card, var(--panel))",
+          padding: "clamp(16px, 4vw, 32px)",
           borderRadius: 16,
-          border: "1px solid var(--border-subtle)",
+          border: "1px solid var(--border-subtle, var(--line))",
           width,
-          maxWidth: "90%",
+          maxWidth: "100%",
+          maxHeight: "85vh",
+          overflowY: "auto",
           boxShadow: "0 24px 60px rgba(0,0,0,0.1)",
         }}
       >
         {title && (
-          <h2 style={{ marginBottom: 24, fontSize: 24, fontWeight: 850 }}>
+          <h2 style={{ marginBottom: "clamp(12px, 3vw, 24px)", fontSize: "clamp(18px, 4vw, 24px)", fontWeight: 850 }}>
             {title}
           </h2>
         )}
-        <div style={{ marginBottom: 24 }}>{children}</div>
-        <div style={{ display: "flex", gap: 12, justifyContent: "flex-end" }}>
+        <div style={{ marginBottom: "clamp(12px, 3vw, 24px)" }}>{children}</div>
+        <div style={{ display: "flex", gap: 12, justifyContent: "flex-end", flexWrap: "wrap" }}>
           <button
             onClick={onClose}
             style={{
@@ -67,6 +70,8 @@ export function Modal({
               fontWeight: 800,
               fontSize: 14,
               cursor: "pointer",
+              flex: "1 1 auto",
+              minWidth: "80px",
             }}
           >
             {cancelText}
@@ -87,6 +92,8 @@ export function Modal({
               fontSize: 14,
               boxShadow: "var(--shadow-button)",
               cursor: "pointer",
+              flex: "1 1 auto",
+              minWidth: "80px",
             }}
           >
             {ctaText}

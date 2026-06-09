@@ -1563,7 +1563,7 @@ progress::-webkit-progress-value {
 
 @media (max-width: 1180px) {
   .dashboard-grid {
-    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
   }
 
   .chart-panel,
@@ -1581,6 +1581,22 @@ progress::-webkit-progress-value {
   .feedback-list,
   .campaign-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .graph-summary-panel {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .inventory-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .commodity-matrix-card {
+    gap: 20px;
+  }
+
+  .leakage-feedback-panel {
+    gap: 16px;
   }
 }
 
@@ -1671,8 +1687,49 @@ progress::-webkit-progress-value {
   /* Metric cards stack */
   .metric-row {
     display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+    grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr)) !important;
     gap: 8px;
+  }
+
+  /* Hero status: remove min-width that causes overflow */
+  .hero__status {
+    min-width: 0;
+    width: 100%;
+  }
+
+  /* Outlet rows: remove min-width constraints */
+  .outlet-row div:nth-child(2) {
+    min-width: 0;
+  }
+
+  .outlet-row p {
+    min-width: 0;
+  }
+
+  /* Mini meter: reduce min-width */
+  .mini-meter {
+    min-width: 0;
+    width: 100%;
+  }
+
+  /* Graph summary: 2 cols on tablet-mobile */
+  .graph-summary-panel {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  /* Inventory summary: 2 cols */
+  .inventory-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  /* Campaign grid: stack */
+  .campaign-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Sidebar page nav: hide on mobile, use sidebar drawer instead */
+  .sidebar-page-nav {
+    display: none;
   }
 
   .metric-card {
@@ -1940,6 +1997,152 @@ progress::-webkit-progress-value {
   .eyebrow {
     font-size: 10px;
   }
+
+  /* Graph summary: single col on small mobile */
+  .graph-summary-panel {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Inventory summary: single col */
+  .inventory-summary {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* KDS track: single col on small mobile */
+  .kds-track {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Summary card with chart: stack on mobile */
+  .summary-card--with-chart {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .aggregator-doughnut-container {
+    width: 70px;
+    height: 70px;
+    align-self: center;
+  }
+
+  /* Donut chart: cap size on small screens */
+  .donut-chart {
+    width: min(180px, 100%);
+  }
+
+  /* Commodity matrix card: stack */
+  .commodity-matrix-card {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .commodity-right {
+    min-height: 180px;
+  }
+
+  /* Leakage feedback panel: stack */
+  .leakage-feedback-panel {
+    grid-template-columns: 1fr !important;
+    gap: 14px;
+  }
+
+  /* Order cards: compact */
+  .order-card {
+    min-height: auto;
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .order-card__bottom b {
+    font-size: 22px;
+  }
+
+  /* Chef cards: compact */
+  .chef-card {
+    min-height: auto;
+    padding: 14px;
+    gap: 10px;
+  }
+
+  /* Feedback items: compact */
+  .feedback-item {
+    min-height: auto;
+    padding: 14px;
+    gap: 12px;
+  }
+
+  /* Summary cards: compact */
+  .summary-card {
+    min-height: auto;
+    padding: 14px;
+  }
+
+  /* Action items: compact */
+  .action-item {
+    min-height: auto;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  /* Navigation bar: tighter */
+  .navigation-bar {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  /* Command bar: tighter */
+  .command-bar {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .command-input {
+    min-height: 38px;
+    padding: 0 10px;
+  }
+
+  /* Range switch: smaller */
+  .range-switch {
+    height: 38px;
+  }
+  .range-switch button {
+    min-height: 28px;
+    padding: 0 10px;
+    font-size: 12px;
+  }
+
+  /* Select and buttons: smaller */
+  select,
+  .primary-button,
+  .secondary-button,
+  .link-button,
+  .mini-button,
+  .command-bar button,
+  .range-switch button {
+    min-height: 38px;
+  }
+
+  /* Usage guide steps compact */
+  .usage-guide-step {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  /* Feedback ticker compact */
+  .feedback-ticker {
+    max-height: 200px;
+  }
+
+  .feedback-ticker-card {
+    padding: 10px;
+  }
+
+  /* IA Section compact */
+  .ia-section-group {
+    margin-bottom: 14px;
+    gap: 10px;
+  }
 }
 
 @media (max-width: 380px) {
@@ -1964,6 +2167,69 @@ progress::-webkit-progress-value {
   .view-tabs button {
     font-size: 11px;
     padding: 6px 10px;
+  }
+
+  /* Further compact metric cards */
+  .metric-card {
+    min-height: 70px;
+    padding: 10px;
+  }
+
+  .metric-card strong {
+    font-size: 20px;
+  }
+
+  .metric-card span {
+    font-size: 11px;
+  }
+
+  /* Compact panels */
+  .panel {
+    padding: 10px !important;
+  }
+
+  /* Summary card further compact */
+  .summary-card {
+    padding: 10px;
+  }
+
+  .summary-card strong {
+    font-size: 20px;
+  }
+
+  /* Order / chef / feedback: further reduce */
+  .order-card,
+  .chef-card,
+  .feedback-item {
+    padding: 10px;
+  }
+
+  /* Compact donut */
+  .donut-chart {
+    width: min(150px, 100%);
+  }
+
+  .donut-chart__center strong {
+    font-size: 24px;
+  }
+
+  /* Heading sizes */
+  h2 {
+    font-size: 14px;
+  }
+
+  /* Select + button height */
+  select,
+  .primary-button,
+  .secondary-button {
+    min-height: 36px;
+    font-size: 12px;
+  }
+
+  /* Chart bars compact */
+  .combo-chart {
+    height: auto;
+    min-height: 120px;
   }
 }
 
