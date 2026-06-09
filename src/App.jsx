@@ -1472,12 +1472,10 @@ function Overview({ role, totals: liveTotals, average: liveAverage, filteredOutl
         {metricRow}
         {renderSection("Kitchen Control & Menu Performance", "Chefs active stations, quality scorecards, and best-selling menu performance.", [
           !isHistorical && chefPanel,
-          menuPerformancePanel,
-          chartPanel
+          menuPerformancePanel
         ])}
         {renderSection("Live Service Queue & Station Alerts", "Active station priorities, stock reorder alerts, and kitchen sub-assembly tickets.", [
-          !isHistorical && opsPanel,
-          !isHistorical && ordersPanel
+          !isHistorical && opsPanel
         ])}
       </>
     );
@@ -1494,10 +1492,9 @@ function Overview({ role, totals: liveTotals, average: liveAverage, filteredOutl
           !isHistorical && opsPanel,
           !isHistorical && ordersPanel
         ])}
-        {renderSection("Revenue Performance & Sensitivity Modeler", "Gross sales trends, localized day-part demand mix, and real-time margin sensitivity.", [
+        {renderSection("Revenue Performance & Sales Trends", "Gross sales trends, localized day-part demand mix, and aggregated channel statistics.", [
           chartPanel,
           mixPanel,
-          commodityMatrixPanel,
           summaryPanel
         ])}
         {renderSection("Aggregator Channel Analytics & Sentiment Loop", "Operational conversion leaks and public feedback loops ticker.", [
@@ -1515,18 +1512,13 @@ function Overview({ role, totals: liveTotals, average: liveAverage, filteredOutl
           workforceManagementPanel,
           compliancePanel
         ])}
-        {renderSection("Financial Analytics & Sensitivity Modeler", "Gross sales trends, localized day-part demand mix, and real-time margin sensitivity.", [
+        {renderSection("Financial Analytics & Sales Trends", "Gross sales trends and localized day-part demand mix across all outlets.", [
           chartPanel,
           mixPanel,
-          commodityMatrixPanel,
           summaryPanel
         ])}
         {renderSection("Ranked Branch Performance Monitor", "Ranked outlet performance monitor, priority reorders, and stock health audits.", [
-          outletPanel,
-          !isHistorical && opsPanel
-        ])}
-        {renderSection("Aggregator Channel Analytics & Sentiment Loop", "Operational conversion leaks and public feedback loops ticker.", [
-          leakageFeedbackPanel
+          outletPanel
         ])}
       </>
     );
