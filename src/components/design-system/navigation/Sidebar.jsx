@@ -6,29 +6,16 @@ import React from "react";
  * are arranged top-to-bottom; the brand uses dividers and labels
  * to group them.
  *
- * Renders nothing special by itself — compose with SidebarBrand,
- * SidebarItem, SidebarDivider, SidebarLabel, SidebarProfile.
+ * Uses the `.sidebar` CSS class so that media-query-based responsive
+ * rules (position: fixed, transform, etc.) can properly override the
+ * default desktop layout on mobile.
  */
 export function Sidebar({ collapsed = false, children, style, className = "", ...rest }) {
   return (
     <aside
-      className={className}
+      className={`sidebar ${className}`.trim()}
       style={{
-        position: "sticky",
-        top: 0,
-        height: "100vh",
-        width: collapsed ? 72 : 260,
-        background: "var(--sidebar-bg)",
-        color: "var(--sidebar-text)",
-        padding: 16,
-        display: "flex",
-        flexDirection: "column",
-        gap: 6,
-        overflow: "hidden",
-        overflowY: "auto",
-        transition: "var(--transition-sidebar)",
-        zIndex: 100,
-        flexShrink: 0,
+        "--sidebar-w": collapsed ? "72px" : "260px",
         fontFamily: "var(--font-sans)",
         ...style,
       }}

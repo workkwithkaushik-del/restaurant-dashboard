@@ -133,6 +133,21 @@ function Dashboard() {
   });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Detect mobile viewport for sidebar behavior
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 900px)').matches);
+  useEffect(() => {
+    const mql = window.matchMedia('(max-width: 900px)');
+    const handler = (e) => setIsMobile(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, []);
+
+  // On mobile, sidebar drawer always shows full (not collapsed)
+  const sidebarCollapsed = isMobile ? false : !sidebarOpen;
+
+  // Close mobile drawer when navigating
+  const closeMobileMenu = () => setMobileMenuOpen(false);
+
   useEffect(() => {
     document.body.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
@@ -308,7 +323,7 @@ function Dashboard() {
       {/* Mobile Overlay */}
       <div className={`sidebar-overlay${mobileMenuOpen ? ' visible' : ''}`} onClick={() => setMobileMenuOpen(false)} />
 
-      <Sidebar collapsed={!sidebarOpen} className={mobileMenuOpen ? 'mobile-open' : ''}>
+      <Sidebar collapsed={sidebarCollapsed} className={mobileMenuOpen ? 'mobile-open' : ''}>
         {/* Toggle Button — always visible */}
         <button 
           className="sidebar-toggle" 
@@ -345,7 +360,7 @@ function Dashboard() {
           }}
         >
           <BrandMark initials="RC" />
-          {!sidebarOpen ? null : (
+          {sidebarCollapsed ? null : (
             <div style={{ whiteSpace: "nowrap" }}>
               <strong style={{ display: "block", fontSize: 14, lineHeight: 1.2, color: "#fff" }}>
                 Restaurant Chain
@@ -360,15 +375,15 @@ function Dashboard() {
         <SidebarDivider />
 
         {/* Role Switcher */}
-        <SidebarLabel collapsed={!sidebarOpen}>Switch Role</SidebarLabel>
+        <SidebarLabel collapsed={sidebarCollapsed}>Switch Role</SidebarLabel>
         <nav style={{ display: "flex", flexDirection: "column", gap: 2 }}>
           {roles.map((item) => (
             <SidebarItem
               key={item.id}
               icon={roleIcons[item.id]}
               active={role === item.id}
-              collapsed={!sidebarOpen}
-              onClick={() => setRole(item.id)}
+              collapsed={sidebarCollapsed}
+              onClick={() => { setRole(item.id); closeMobileMenu(); }}
               title={item.label}
             >
               {item.label}
@@ -379,7 +394,7 @@ function Dashboard() {
         <SidebarDivider />
 
         {/* Page Navigation */}
-        <SidebarLabel collapsed={!sidebarOpen}>Navigation</SidebarLabel>
+        <SidebarLabel collapsed={sidebarCollapsed}>Navigation</SidebarLabel>
         <nav style={{ display: "flex", flexDirection: "column", gap: 2 }}>
           {(roleTabMap[role] ?? views)
             .filter(view => !(isHistorical && ["orders", "inventory", "staff"].includes(view)))
@@ -388,8 +403,8 @@ function Dashboard() {
                 key={view}
                 icon={viewIcons[view]}
                 active={activeView === view}
-                collapsed={!sidebarOpen}
-                onClick={() => setActiveView(view)}
+                collapsed={sidebarCollapsed}
+                onClick={() => { setActiveView(view); closeMobileMenu(); }}
                 title={view}
               >
                 <span style={{ textTransform: 'capitalize' }}>{view}</span>
@@ -400,15 +415,15 @@ function Dashboard() {
         <SidebarDivider />
 
         {/* Utilities */}
-        <SidebarLabel collapsed={!sidebarOpen}>System</SidebarLabel>
+        <SidebarLabel collapsed={sidebarCollapsed}>System</SidebarLabel>
         <nav style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          <SidebarItem icon={<Bell size={18} />} collapsed={!sidebarOpen} title="Notifications">
+          <SidebarItem icon={<Bell size={18} />} collapsed={sidebarCollapsed} title="Notifications">
             Notifications
           </SidebarItem>
-          <SidebarItem icon={<Settings size={18} />} collapsed={!sidebarOpen} title="Settings">
+          <SidebarItem icon={<Settings size={18} />} collapsed={sidebarCollapsed} title="Settings">
             Settings
           </SidebarItem>
-          <SidebarItem icon={<HelpCircle size={18} />} collapsed={!sidebarOpen} title="Help & Support">
+          <SidebarItem icon={<HelpCircle size={18} />} collapsed={sidebarCollapsed} title="Help & Support">
             Help & Support
           </SidebarItem>
         </nav>
@@ -442,7 +457,7 @@ function Dashboard() {
             }}
           >
             {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
-            {sidebarOpen && <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>}
+            {!sidebarCollapsed && <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>}
           </button>
           
           <div
@@ -460,7 +475,7 @@ function Dashboard() {
             ) : (
               <LiveDot size={7} />
             )}
-            {sidebarOpen && (
+            {!sidebarCollapsed && (
               <span>{isHistorical ? "EOD Snapshot" : "Live · Synced 42s ago"}</span>
             )}
           </div>
@@ -477,7 +492,7 @@ function Dashboard() {
             }}
           >
             <Avatar initials="KP" size={36} />
-            {sidebarOpen && (
+            {!sidebarCollapsed && (
               <div style={{ overflow: "hidden", whiteSpace: "nowrap" }}>
                 <strong style={{ display: "block", fontSize: 13, color: "#fff" }}>
                   Kaushik Patil
