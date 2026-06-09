@@ -1,0 +1,80 @@
+/* ============================================================
+   UXscape — Spacing, radius, shadow, motion
+   Not a strict 4px grid — the brand uses warm, slightly
+   irregular steps for organic density.
+   ============================================================ */
+
+:root {
+  /* ---- Spacing scale --------------------------------------- */
+  --space-1:  2px;
+  --space-2:  4px;
+  --space-3:  6px;
+  --space-4:  8px;
+  --space-5:  10px;
+  --space-6:  12px;
+  --space-7:  14px;
+  --space-8:  16px;
+  --space-9:  18px;
+  --space-10: 22px;
+  --space-11: 26px;
+  --space-12: 32px;
+  --space-14: 40px;
+
+  /* Common semantic spacings */
+  --gap-cluster: var(--space-4);   /* chips, inline items */
+  --gap-row:     var(--space-6);   /* between siblings in a row */
+  --gap-stack:   var(--space-8);   /* between cards in a column */
+  --gap-section: var(--space-11);  /* between major sections */
+
+  --pad-card:    var(--space-9);   /* 18px — default panel padding */
+  --pad-card-lg: 20px;             /* large panels */
+  --pad-workspace: var(--space-11);/* 26px workspace gutter */
+
+  /* ---- Sidebar widths -------------------------------------- */
+  --sidebar-width-open: 260px;
+  --sidebar-width-collapsed: 72px;
+
+  /* ---- Radii ----------------------------------------------- */
+  --radius-xs: 4px;   /* tag/badge */
+  --radius-sm: 6px;   /* small button, chart bar */
+  --radius-md: 8px;   /* default — cards, panels, inputs, buttons */
+  --radius-lg: 10px;  /* feedback ticker card */
+  --radius-xl: 12px;  /* commodity matrix card */
+  --radius-2xl: 16px; /* modal */
+  --radius-pill: 999px;
+
+  /* ---- Heights / hit targets ------------------------------ */
+  --control-h-sm: 32px;  /* mini button, range switch inner */
+  --control-h-md: 36px;  /* tab button, compact input */
+  --control-h-lg: 42px;  /* primary input + button */
+  --control-h-xl: 48px;  /* sidebar profile */
+
+  /* ---- Shadow system -------------------------------------- */
+  /* Card shadows are deep and soft — espresso-tinted (warm) not black */
+  --shadow-card:    0 24px 64px rgba(33, 28, 21, 0.10);
+  --shadow-panel:   0 16px 40px rgba(33, 28, 21, 0.07);
+  --shadow-pop:     0 18px 38px rgba(33, 28, 21, 0.26);  /* dark tooltips */
+  --shadow-button:  0 14px 30px rgba(33, 28, 21, 0.20);  /* primary button */
+  --shadow-bar:     0 18px 30px rgba(33, 28, 21, 0.22);  /* chart bar hover */
+  --shadow-gold:    0 14px 32px rgba(176, 141, 76, 0.26); /* gold accent lift */
+  --shadow-mark:    var(--brand-mark-shadow);
+
+  /* ---- Motion --------------------------------------------- */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+  --ease-out:      cubic-bezier(0.2, 0.7, 0.2, 1); /* @kind other */
+
+  --duration-fast:   120ms; /* @kind other */
+  --duration-base:   160ms; /* @kind other */
+  --duration-medium: 200ms; /* @kind other */
+  --duration-slow:   300ms; /* @kind other */
+
+  --transition-hover:    all var(--duration-base) ease; /* @kind other */
+  --transition-control:  all var(--duration-medium) var(--ease-standard); /* @kind other */
+  --transition-sidebar:  all var(--duration-slow) var(--ease-standard); /* @kind other */
+
+  /* ---- Z-index -------------------------------------------- */
+  --z-sidebar:   100;  /* @kind other */
+  --z-overlay:   99;   /* @kind other */
+  --z-modal:     1000; /* @kind other */
+  --z-tooltip:   5;    /* @kind other */
+}

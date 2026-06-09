@@ -1,0 +1,26 @@
+<!-- @dsCard group="Type" viewport="700x170" name="Numeric / metric" subtitle="Big numbers + currency formatting" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;padding:18px;background:var(--surface-card);display:flex;gap:24px;align-items:flex-start}
+  .metric{display:flex;flex-direction:column;gap:6px}
+  .value{font:var(--text-metric);color:var(--text-primary);letter-spacing:0}
+  .value--accent{color:var(--accent-green)}
+  .label{font:800 12px/1.2 var(--font-sans);color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em}
+  .delta{font:900 13px/1.2 var(--font-sans);color:var(--accent-green)}
+  .meta{font:500 11px/1.2 var(--font-mono);color:var(--text-muted);margin-top:4px}
+</style></head>
+<body>
+  <div class="metric">
+    <div class="label">Net sales</div>
+    <div class="value">₹5,99,000</div>
+    <div class="delta">+13.4% vs last week</div>
+    <div class="meta">value · clamp(24, 3vw, 34) · weight 800</div>
+  </div>
+  <div class="metric">
+    <div class="label">CX score</div>
+    <div class="value">64 NPS</div>
+    <div class="delta">4.6 avg rating</div>
+    <div class="meta">delta · 13/900 · green</div>
+  </div>
+</body></html>

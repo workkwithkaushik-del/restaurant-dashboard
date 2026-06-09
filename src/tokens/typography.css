@@ -1,0 +1,60 @@
+/* ============================================================
+   UXscape — Typography tokens (Premium)
+   Editorial luxe hierarchy: an elegant serif (Cormorant Garamond)
+   carries display + headings at medium weight; a refined grotesque
+   (Hanken Grotesk) carries body, labels, and all numerals.
+   Headings are NOT heavy — luxe serifs are elegant at 500–600.
+   ============================================================ */
+
+:root {
+  /* Families */
+  --font-serif:
+    "Cormorant Garamond", "Hoefler Text", Garamond, "Times New Roman", serif;
+  --font-sans:
+    "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Helvetica, Arial, sans-serif;
+  --font-mono:
+    ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, monospace;
+
+  /* Weights — the brand now leans restrained, not black */
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-heavy:    800;
+  /* serif display weights */
+  --weight-serif-regular: 400;
+  --weight-serif-medium:  500;
+  --weight-serif-semibold: 600;
+
+  /* Sizes — serif display runs larger than the old sans display */
+  --size-eyebrow:  11px;   /* uppercase label above section title */
+  --size-label:    12px;
+  --size-meta:     13px;   /* small body, table cells, captions */
+  --size-body:     14px;
+  --size-body-lg:  16px;   /* hero supporting copy */
+  --size-h2:       23px;   /* panel headings (serif) */
+  --size-h1-min:   34px;   /* clamp lower */
+  --size-h1-max:   58px;   /* clamp upper, hero h1 (serif) */
+  --size-metric-min: 26px; /* clamp lower for big numbers */
+  --size-metric-max: 38px; /* clamp upper for big numbers */
+
+  /* Line heights */
+  --leading-tight:  1.02;  /* big serif numbers, hero h1 */
+  --leading-snug:   1.16;  /* h2 */
+  --leading-normal: 1.4;   /* small body */
+  --leading-body:   1.5;   /* hero supporting copy */
+  --leading-prose:  1.55;  /* long-form (feedback notes) */
+
+  /* Letter spacing — luxe uses wide eyebrows, tight display */
+  --tracking-tight:    -0.012em;
+  --tracking-display:  -0.015em;
+  --tracking-wide:      0.04em;
+  --tracking-eyebrow:   0.18em;   /* generous, fashion-magazine spacing */
+
+  /* Semantic text roles */
+  --text-display: var(--weight-serif-semibold) clamp(var(--size-h1-min), 4.4vw, var(--size-h1-max))/var(--leading-tight) var(--font-serif);
+  --text-h2:      var(--weight-serif-semibold) var(--size-h2)/var(--leading-snug) var(--font-serif);
+  --text-metric:  var(--weight-bold)  clamp(var(--size-metric-min), 3vw, var(--size-metric-max))/var(--leading-tight) var(--font-sans);
+  --text-eyebrow: var(--weight-bold)  var(--size-eyebrow)/1.2 var(--font-sans);
+}

@@ -1,0 +1,157 @@
+/* ============================================================
+   UXscape — Color tokens (Premium)
+   A richer, jewel-toned hospitality palette: deep pine green,
+   champagne gold, wine, muted sapphire & plum, over warm ivory /
+   parchment surfaces and espresso ink. Token NAMES are unchanged
+   (--green, --amber, --coral, --blue, --purple) so every component
+   re-skins automatically; only the VALUES moved upmarket.
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+
+  /* ---- Base — neutrals (espresso → parchment) ----------------- */
+  --ink: #211c15;        /* espresso near-black, warm */
+  --soft-ink: #423a2e;   /* headings on tinted bg */
+  --muted: #8c8273;      /* warm taupe — secondary text */
+  --line: #e7e0d2;       /* warm sand dividers, borders */
+  --panel: #fffdf8;      /* ivory card / panel surface */
+  --wash: #f5efe3;       /* parchment page background */
+  --input-bg: #fffdf8;
+
+  /* ---- Base — accents (each a deep jewel + soft tint) --------- */
+  --green:       #0c4a37; /* deep pine — primary */
+  --green-soft:  #e2ece7;
+  --amber:       #b08d4c; /* champagne gold */
+  --amber-soft:  #f3ead7;
+  --coral:       #8f3b33; /* wine / claret */
+  --coral-soft:  #f1e2df;
+  --blue:        #2f4a6b; /* muted sapphire / navy */
+  --blue-soft:   #e4e9f0;
+  --purple:      #5d4467; /* plum */
+  --purple-soft: #ece4f0;
+
+  /* Gold is used heavily as a luxe accent — alias for clarity */
+  --gold:        #b08d4c;
+  --gold-deep:   #8a6a2d;
+
+  /* ---- Sidebar (deep espresso, gold-lined) -------------------- */
+  --sidebar-bg:        #14120d;
+  --sidebar-panel:     #1d1a13;
+  --sidebar-line:      #332e22;
+  --sidebar-line-soft: #241f17;
+  --sidebar-text:      #f7f1e4;
+  --sidebar-muted:     #9c917c;
+  --sidebar-label:     #b59b6a;  /* muted gold section labels */
+  --sidebar-item:      #c6bba4;
+  --sidebar-item-hover-bg: #211d15;
+  --sidebar-item-active-bg: #262019;
+  --sidebar-item-active-border: #6b5a38; /* gold-bronze active edge */
+
+  /* ---- Hero / ambient backgrounds ----------------------------- */
+  --hero-bg: linear-gradient(135deg, #fffdf8 0%, #f1f1e6 52%, #f7eed7 100%);
+  --hero-status-bg: rgba(255, 253, 248, 0.78);
+  --body-bg-1: rgba(12, 74, 55, 0.06);
+  --body-bg-2: rgba(176, 141, 76, 0.11);
+  --workspace-bg:
+    linear-gradient(135deg, var(--body-bg-1), transparent 34%),
+    linear-gradient(315deg, var(--body-bg-2), transparent 40%),
+    var(--wash);
+
+  /* ---- Brand mark gradient (champagne gold foil) ------------- */
+  --brand-mark-bg: linear-gradient(135deg, #e9d6a8, #b08d4c);
+  --brand-mark-fg: #211c15;
+  --brand-mark-shadow: 0 12px 30px rgba(176, 141, 76, 0.30);
+
+  /* ---- Chart fills (deep → light of each hue) ---------------- */
+  --chart-green-bar:  linear-gradient(180deg, #0c4a37, #5b9b80); /* @kind color */
+  --chart-amber-bar:  linear-gradient(180deg, #b08d4c, #e6cf96); /* @kind color */
+  --chart-blue-bar:   linear-gradient(180deg, #2f4a6b, #7e98ba); /* @kind color */
+  --chart-meter-fill: linear-gradient(90deg, var(--green), #5b9b80); /* @kind color */
+  --chart-track:      #ece5d6;
+
+  /* ============================================================
+     Semantic aliases — prefer these in components
+     ============================================================ */
+
+  /* Text */
+  --text-primary:   var(--ink);
+  --text-secondary: var(--soft-ink);
+  --text-muted:     var(--muted);
+  --text-on-dark:   #f7f1e4;
+  --text-success:   var(--green);
+  --text-warning:   #8a6a2d;
+  --text-danger:    #7a2f28;
+
+  /* Surfaces */
+  --surface-page:   var(--wash);
+  --surface-card:   var(--panel);
+  --surface-inset:  var(--wash);
+  --surface-dark:   var(--ink);
+
+  /* Borders */
+  --border-subtle:  var(--line);
+  --border-strong:  rgba(33, 28, 21, 0.14);
+  --border-success: rgba(12, 74, 55, 0.20);
+  --border-gold:    rgba(176, 141, 76, 0.38);
+
+  /* Status — solid + soft pairs */
+  --status-success-bg: var(--green-soft);
+  --status-success-fg: var(--green);
+  --status-warning-bg: var(--amber-soft);
+  --status-warning-fg: #8a6a2d;
+  --status-danger-bg:  var(--coral-soft);
+  --status-danger-fg:  #7a2f28;
+  --status-info-bg:    var(--blue-soft);
+  --status-info-fg:    var(--blue);
+  --status-neutral-bg: var(--wash);
+  --status-neutral-fg: var(--muted);
+
+  /* Accent role aliases (metric stripes, summary tints) */
+  --accent-green:  var(--green);
+  --accent-amber:  var(--amber);
+  --accent-coral:  var(--coral);
+  --accent-blue:   var(--blue);
+  --accent-purple: var(--purple);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --ink: #f4efe4;
+  --soft-ink: #d8cfbf;
+  --muted: #9c917c;
+  --line: #353026;
+  --panel: #1b1813;
+  --wash: #110f0b;
+  --input-bg: #161310;
+
+  --green: #4caf8a;
+  --green-soft: #14271f;
+  --amber: #d4b06a;
+  --amber-soft: #3a2e16;
+  --coral: #cf7a6f;
+  --coral-soft: #3a1c18;
+  --blue: #7e9ac4;
+  --blue-soft: #1a2433;
+  --purple: #a888b8;
+  --purple-soft: #2a2030;
+
+  --gold: #d4b06a;
+  --gold-deep: #b08d4c;
+
+  --hero-bg: linear-gradient(135deg, #1f1c14 0%, #161310 55%, #20190f 100%);
+  --hero-status-bg: rgba(27, 24, 19, 0.85);
+  --body-bg-1: rgba(76, 175, 138, 0.05);
+  --body-bg-2: rgba(212, 176, 106, 0.04);
+
+  --chart-track: #2a2419;
+
+  --text-on-dark: #f4efe4;
+  --text-warning: #d4b06a;
+  --text-danger:  #cf7a6f;
+  --status-warning-fg: #d4b06a;
+  --status-danger-fg:  #cf7a6f;
+  --border-success: rgba(76, 175, 138, 0.26);
+  --border-gold:    rgba(212, 176, 106, 0.34);
+}

@@ -1,0 +1,42 @@
+<!-- @dsCard group="Colors" viewport="700x180" name="Accents" subtitle="Five accents, each a saturated + soft pair" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;padding:18px;background:var(--surface-card)}
+  .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .stack{display:flex;flex-direction:column;gap:6px}
+  .pair{display:grid;grid-template-rows:1fr 1fr;height:88px;border-radius:8px;overflow:hidden;border:1px solid var(--border-subtle)}
+  .name{font:700 12px/1.2 var(--font-sans);color:var(--text-primary)}
+  .vals{font:500 11px/1.3 var(--font-mono);color:var(--text-muted)}
+  .row{display:flex;justify-content:space-between;align-items:center}
+  .dot{width:8px;height:8px;border-radius:50%}
+</style></head>
+<body>
+  <div class="grid">
+    <div class="stack">
+      <div class="pair"><div style="background:#08785d"></div><div style="background:#e4f5ed"></div></div>
+      <div class="row"><div class="name">Green</div><div class="dot" style="background:#08785d"></div></div>
+      <div class="vals">#08785d · #e4f5ed</div>
+    </div>
+    <div class="stack">
+      <div class="pair"><div style="background:#f0a72f"></div><div style="background:#fff3d8"></div></div>
+      <div class="row"><div class="name">Amber</div><div class="dot" style="background:#f0a72f"></div></div>
+      <div class="vals">#f0a72f · #fff3d8</div>
+    </div>
+    <div class="stack">
+      <div class="pair"><div style="background:#e35b4f"></div><div style="background:#ffe9e7"></div></div>
+      <div class="row"><div class="name">Coral</div><div class="dot" style="background:#e35b4f"></div></div>
+      <div class="vals">#e35b4f · #ffe9e7</div>
+    </div>
+    <div class="stack">
+      <div class="pair"><div style="background:#3a5bdc"></div><div style="background:#e9edff"></div></div>
+      <div class="row"><div class="name">Blue</div><div class="dot" style="background:#3a5bdc"></div></div>
+      <div class="vals">#3a5bdc · #e9edff</div>
+    </div>
+    <div class="stack">
+      <div class="pair"><div style="background:#7652d9"></div><div style="background:#f0eaff"></div></div>
+      <div class="row"><div class="name">Purple</div><div class="dot" style="background:#7652d9"></div></div>
+      <div class="vals">#7652d9 · #f0eaff</div>
+    </div>
+  </div>
+</body></html>

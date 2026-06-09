@@ -1,0 +1,85 @@
+<!-- @dsCard group="Components" viewport="900x540" name="Navigation — Sidebar, SidebarItem, Hero" subtitle="The product's chrome" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  html,body{margin:0;height:100%;background:var(--surface-page);font-family:var(--font-sans);color:var(--text-primary)}
+  #root{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+</style></head>
+<body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const ns = window.UXscapeDashboardDesignSystem_6e71f2;
+const { Sidebar, SidebarDivider, SidebarLabel, SidebarItem, BrandMark, Avatar, Hero, LiveDot } = ns;
+
+const Ico = ({ name, size = 18 }) => {
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    if (ref.current && window.lucide) {
+      ref.current.innerHTML = "";
+      const el = document.createElement("i");
+      el.setAttribute("data-lucide", name);
+      el.style.width = size + "px";
+      el.style.height = size + "px";
+      ref.current.appendChild(el);
+      window.lucide.createIcons();
+    }
+  }, [name, size]);
+  return <span ref={ref} style={{ display: "inline-flex" }} />;
+};
+
+function App() {
+  const [active, setActive] = React.useState("overview");
+  const items = [
+    ["overview","layout-dashboard","Overview"],
+    ["menu","utensils-crossed","Menu"],
+    ["orders","shopping-cart","Orders"],
+    ["inventory","package","Inventory"],
+    ["staff","users","Staff"],
+    ["feedback","message-square","Feedback"],
+  ];
+  return (
+    <React.Fragment>
+      <Sidebar>
+        <div style={{display:'flex',alignItems:'center',gap:12,padding:'4px 0',minHeight:48}}>
+          <BrandMark initials="RC" />
+          <div><strong style={{display:'block',fontSize:14,lineHeight:1.2,color:'#fff'}}>Restaurant Chain</strong><span style={{display:'block',color:'#8ca299',fontSize:11,marginTop:2}}>Dashboard</span></div>
+        </div>
+        <SidebarDivider/>
+        <SidebarLabel>Navigation</SidebarLabel>
+        {items.map(([k,icon,label]) => (
+          <SidebarItem key={k} icon={<Ico name={icon}/>} active={active===k} onClick={()=>setActive(k)}>{label}</SidebarItem>
+        ))}
+        <SidebarDivider/>
+        <SidebarLabel>System</SidebarLabel>
+        <SidebarItem icon={<Ico name="bell"/>}>Notifications</SidebarItem>
+        <SidebarItem icon={<Ico name="settings"/>}>Settings</SidebarItem>
+        <div style={{marginTop:'auto',display:'flex',flexDirection:'column',gap:6,paddingTop:8}}>
+          <div style={{display:'flex',alignItems:'center',gap:6,padding:'6px 10px',color:'#8ca299',fontSize:11}}>
+            <LiveDot size={7}/><span>Live · Synced 42s ago</span>
+          </div>
+          <div style={{display:'flex',alignItems:'center',gap:10,padding:10,borderRadius:10,background:'#182521',border:'1px solid #2a3d35'}}>
+            <Avatar initials="KP" size={36}/>
+            <div><strong style={{display:'block',fontSize:13,color:'#fff'}}>Kaushik Patil</strong><span style={{display:'block',color:'#8ca299',fontSize:11}}>Regional Manager</span></div>
+          </div>
+        </div>
+      </Sidebar>
+      <div style={{padding:26,display:'grid',gap:16,alignContent:'start'}}>
+        <Hero
+          eyebrow="Today, 08 Jun 2026"
+          title="Regional Manager Dashboard"
+          status={<React.Fragment><LiveDot/><div style={{display:'grid',gap:3}}><b style={{fontSize:14}}>All outlets</b><span style={{color:'var(--muted)',fontSize:12}}>Today view · live sync on</span></div></React.Fragment>}
+        >
+          Track outlet health, revenue, alerts, and live service risk from one screen.
+        </Hero>
+      </div>
+    </React.Fragment>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body></html>

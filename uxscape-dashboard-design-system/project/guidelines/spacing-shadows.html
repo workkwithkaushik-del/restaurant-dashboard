@@ -1,0 +1,19 @@
+<!-- @dsCard group="Spacing" viewport="700x220" name="Shadows" subtitle="Warm green-tinted lifts, always wide-soft" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;padding:24px;background:var(--surface-page);font-family:var(--font-sans)}
+  .row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .item{display:flex;flex-direction:column;gap:8px;align-items:center}
+  .box{width:100%;height:90px;background:var(--surface-card);border:1px solid var(--border-subtle);border-radius:8px}
+  .label{font:700 11px/1.2 var(--font-sans);color:var(--text-primary)}
+  .px{font:500 10px/1.3 var(--font-mono);color:var(--text-muted);text-align:center}
+</style></head>
+<body>
+  <div class="row">
+    <div class="item"><div class="box" style="box-shadow:var(--shadow-card)"></div><div class="label">card</div><div class="px">0 22 60 / 0.09</div></div>
+    <div class="item"><div class="box" style="box-shadow:var(--shadow-panel)"></div><div class="label">panel</div><div class="px">0 14 36 / 0.06</div></div>
+    <div class="item"><div class="box" style="box-shadow:var(--shadow-button);background:var(--ink)"></div><div class="label">button</div><div class="px">0 14 28 / 0.18</div></div>
+    <div class="item"><div class="box" style="box-shadow:var(--shadow-pop);background:#101916"></div><div class="label">pop / tooltip</div><div class="px">0 18 38 / 0.24</div></div>
+  </div>
+</body></html>

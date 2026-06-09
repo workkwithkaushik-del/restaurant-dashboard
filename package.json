@@ -1,0 +1,29 @@
+{
+  "name": "vi-comp",
+  "private": true,
+  "type": "module",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@hello-pangea/dnd": "^18.0.1",
+    "@tanstack/react-query": "^5.100.9",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.7",
+    "lucide-react": "^1.14.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-grid-layout": "^2.2.3",
+    "react-resizable": "^4.0.1",
+    "react-router-dom": "^7.15.0",
+    "recharts": "^3.8.1",
+    "sonner": "^2.0.7"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.0.10"
+  }
+}

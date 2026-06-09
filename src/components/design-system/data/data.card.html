@@ -1,0 +1,58 @@
+<!-- @dsCard group="Components" viewport="700x520" name="Data — KPI cards & meters" subtitle="MetricCard, SummaryCard, MiniMeter, Panel" -->
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body{margin:0;padding:22px;background:var(--surface-page);font-family:var(--font-sans);color:var(--text-primary)}
+  .label{font:800 10px/1.2 var(--font-sans);color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:0 0 10px}
+  .group{margin-bottom:18px}
+  .row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+</style></head>
+<body><div id="root"></div>
+<script type="text/babel" data-presets="react">
+const ns = window.UXscapeDashboardDesignSystem_6e71f2;
+const { MetricCard, SummaryCard, MiniMeter, Panel } = ns;
+
+function App() {
+  return (
+    <div>
+      <div className="group">
+        <p className="label">MetricCard — green / blue / amber / coral / purple stripes</p>
+        <div className="row">
+          <MetricCard label="Net sales" value="₹5,99,000" change="+13.4% vs last week" accent="green" />
+          <MetricCard label="Orders" value="1,096" change="268 delivery orders" accent="blue" />
+          <MetricCard label="Live queue" value="58" change="tickets being prepared" accent="amber" />
+          <MetricCard label="CX score" value="64 NPS" change="4.6 avg rating" accent="coral" />
+        </div>
+      </div>
+
+      <div className="group">
+        <p className="label">SummaryCard — soft diagonal tint overlay</p>
+        <div className="row">
+          <SummaryCard label="Sales" value="₹5,99,000" detail="₹85,571 avg daily" tone="green" />
+          <SummaryCard label="Fulfilled" value="1,038" detail="95% of orders completed" tone="blue" />
+          <SummaryCard label="Unfulfilled" value="58" detail="2 delayed orders" tone="amber" />
+          <SummaryCard label="Est. P&L" value="₹1,42,000" detail="26% margin" tone="purple" />
+        </div>
+      </div>
+
+      <div className="group">
+        <p className="label">MiniMeter + Panel with eyebrow & title</p>
+        <Panel eyebrow="Inventory" title="Stock health" action={<a style={{color:'var(--green)',fontWeight:800,fontSize:13}}>View all →</a>}>
+          <div style={{display:'grid',gap:12}}>
+            <MiniMeter value={82} label="Central Square" suffix="82%" />
+            <MiniMeter value={68} label="Lake Road" suffix="68%" />
+            <MiniMeter value={74} label="Campus Gate" suffix="74%" />
+          </div>
+        </Panel>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body></html>

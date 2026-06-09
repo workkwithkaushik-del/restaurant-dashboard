@@ -1,0 +1,33 @@
+/* ============================================================
+   UXscape — Base element styles
+   Minimal reset + body defaults so consuming components inherit
+   the brand's type colour and feel without each card re-stating
+   it. Only targets html/body and very generic primitives.
+   ============================================================ */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--workspace-bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--size-body);
+  line-height: var(--leading-normal);
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, p { margin: 0; }
+
+h1 { font: var(--text-display); letter-spacing: var(--tracking-tight); }
+h2 { font: var(--text-h2);      letter-spacing: var(--tracking-tight); }
+
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+button, input, select { outline-color: var(--green); }
