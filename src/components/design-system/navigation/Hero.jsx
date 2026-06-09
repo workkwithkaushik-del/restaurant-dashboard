@@ -8,7 +8,7 @@ import React from "react";
 export function Hero({ eyebrow, title, children, status, style, className = "", ...rest }) {
   return (
     <header
-      className={className}
+      className={`hero ${className}`.trim()}
       style={{
         display: "flex",
         alignItems: "center",
@@ -71,6 +71,7 @@ export function Hero({ eyebrow, title, children, status, style, className = "", 
       {status && (
         <div
           aria-label="Current dashboard scope"
+          className="hero__status"
           style={{
             minWidth: 210,
             display: "flex",
