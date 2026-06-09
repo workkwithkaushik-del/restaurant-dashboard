@@ -330,9 +330,23 @@ function Dashboard() {
   const [showExportModal, setShowExportModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
+  const [hasConfigured, setHasConfigured] = useState(() => {
+    const saved = sessionStorage.getItem('aroma_setup_completed');
+    return saved === 'true';
+  });
+
   const isToday = selectedDate === getTodayString();
   const isSpecificOutlet = selectedOutlet !== "all";
   const isConfigured = isToday && isSpecificOutlet;
+
+  useEffect(() => {
+    if (isConfigured) {
+      setHasConfigured(true);
+      sessionStorage.setItem('aroma_setup_completed', 'true');
+    }
+  }, [isConfigured]);
+
+  const showDashboardData = isConfigured || hasConfigured;
 
   // Persist state changes to localStorage
   // role is synced in setRole manually to avoid unnecessary re-renders
@@ -741,7 +755,7 @@ function Dashboard() {
           </div>
         </section>
 
-        {isConfigured ? (
+        {showDashboardData ? (
           <>
             <section
               className="command-bar"
